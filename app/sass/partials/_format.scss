@@ -1,0 +1,17 @@
+.format {
+    margin-top: 120px;
+    margin-bottom: 120px;
+
+    @media (max-width: 767px) {
+        margin: 60px 0;
+    }
+}
+
+.format__content {
+    padding-bottom: 120px;
+    border-bottom: 2px solid  #EFEFF2;
+
+    @media (max-width: 767px) {
+        padding-bottom: 60px;
+    }
+}

@@ -1,0 +1,145 @@
+.contacts {    
+    position: relative;
+
+    @media (max-width: 1023px) {
+        margin-bottom: 60px;
+    } 
+
+    .section__title {
+        margin-bottom: 50px;
+    }
+}
+
+.contacts__content {
+    display: flex;
+}
+
+.contacts__block {
+
+    &:first-child {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 47.8%;
+        height: 48.6vw;
+
+        @media (max-width: 1023px) {
+            width: 100%;
+            height: auto;
+            max-width: 560px;
+        } 
+    }
+
+    &:last-child {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        @media (max-width: 1023px) {
+            display: none;
+        } 
+    }
+
+    .contacts__image {
+        width: 50vw;
+    }
+}
+
+.contacts__form,
+.contacts__info {
+    margin-left: 60px;
+
+    @media (max-width: 1023px) {
+        margin-left: 0;
+    } 
+}
+
+.contacts__form {
+    margin-bottom: 50px;
+
+    @media (max-width: 767px) {
+        margin-bottom: 25px;
+    }
+
+    .input {
+        margin-right: 24px;
+        max-width: 235px;
+
+        @media (max-width: 767px) {
+            margin-bottom: 30px;
+        }
+
+        &::placeholder {
+
+            @media (max-width: 767px) {
+                font-size: 16px;
+            }
+        }
+    }
+
+    .input_row {
+        justify-content: flex-start;
+
+        @media (max-width: 767px) {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+}
+
+.contacts__info {
+    display: flex;
+    justify-content: space-between;
+
+    @media (max-width: 767px) {
+        flex-direction: column;
+    } 
+
+    .contacts__info_block {
+        width: 46.63%;
+        
+        @media (max-width: 1023px) {
+            width: 40.35%;
+        } 
+
+        @media (max-width: 767px) {
+            width: 100%;
+            margin-bottom: 25px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        } 
+    }
+
+    .name {
+        width: 100%;
+        font-weight: 500;
+        margin-bottom: 25px;
+        
+        &:last-child {
+            font-weight: 400;
+            margin-bottom: 0;
+        }
+        .comment {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 18px;
+            color: #B3B1C2;
+
+        }
+    }
+
+    .value {
+        width: 100%;
+        color: $color2;
+        font-weight: 500;
+        text-decoration: underline;
+        text-underline-position: under;
+        margin-bottom: 25px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}

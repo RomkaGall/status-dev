@@ -1,0 +1,114 @@
+.apartments {
+    margin-bottom: 141px;
+    overflow: hidden;
+
+    @media (max-width: 767px) {
+        margin-bottom: 60px;
+    }
+    
+    .section__block {
+        margin-bottom: 50px;
+    }
+}
+
+.apartments__slider_wr {
+    position: relative;
+}
+
+.apartments__slider {
+    margin-bottom: 50px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+
+    @media (max-width: 767px) {
+        margin-bottom: 90px;
+        overflow: initial;
+    }
+}
+
+.apartments__block {
+    padding: 0 60px;
+
+    @media (max-width: 1023px) {
+        padding: 0;
+    }
+}
+
+.apartments__top {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 25px;
+}
+
+.apartments__block_title {
+    margin-right: 58px;
+    font-weight: bold;
+    font-size: 64px;
+    line-height: 83px;
+
+    @media (max-width: 767px) {
+        margin-right: 63px;
+        font-size: 32px;
+        line-height: 42px;
+    }
+}
+
+.apartments__show_plan {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 23px;
+    text-decoration-line: underline;
+    text-underline-position: under;
+    cursor: pointer;
+    color: $color2;
+
+    @media (max-width: 767px) {
+        font-size: 14px;
+        line-height: 18px;
+    }
+
+    svg {
+        flex-shrink: 0;
+        margin-right: 15px;
+
+        @media (max-width: 767px) {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+    }
+}
+
+.apartments__values {
+    display: grid;
+    grid-gap: 30px 32px;
+    grid-template-columns: repeat(auto-fit,minmax(226px,1fr));
+
+    @media (max-width: 767px) {
+        grid-template-columns: repeat(auto-fit,minmax(120px,1fr));
+        grid-gap: 30px 40px;
+    }
+}
+
+.apartments__values_item {
+    padding-top: 15px;
+    border-top: 2px solid #EFEFF2;
+
+    .value {
+        margin-bottom: 5px;
+        font-size: 22px;
+        line-height: 150%;
+
+        @media (max-width: 767px) {
+            margin-bottom: 2px;
+            font-size: 18px;
+        }
+    }
+
+    .value_name {
+        @media (max-width: 767px) {
+            font-size: 14px;
+        }
+    }
+}

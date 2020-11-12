@@ -1,0 +1,248 @@
+.banner {
+    position: relative;
+    overflow: hidden;
+    height: calc(100vh - 80px);
+  
+    @media (max-width: 767px) {
+        height: calc(100vh - 62px);
+    }
+
+    .text_overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90.68deg, rgba(0, 0, 0, 0.8) 0.63%, rgba(0, 0, 0, 0.3) 75.18%, rgba(0, 0, 0, 0) 97.28%);
+    }
+
+    .swiper-slide {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+
+    .container {
+        position: relative;
+        z-index: 3;
+
+        @media (max-width: 1023px){
+            padding: 0 50px;
+        }
+
+        @media (max-width: 767px) {
+            padding: 0 20px;
+        }
+
+        &.container--bottom {
+            position: absolute;
+            bottom: 56px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+
+    .mb_YTPBar {
+        background: none;
+        opacity: 1;
+
+        .mb_YTPProgress {
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 56px;
+            max-width: 1160px;
+            height: 2px;
+            margin: 0 auto;
+            background: rgba($color: #B3B1C2, $alpha: 0.4);
+        }
+
+        .mb_YTPseekbar {
+            height: 2px;
+            background: $color3;
+        }
+
+        .mb_YTPLoaded {
+            height: 2px;
+        }
+
+        .mb_YTPPlayPause {
+
+        }
+
+        .buttonBar {
+            display: none;
+        }
+    } 
+
+    .slider_pattern .swiper-pagination-progressbar.progress_bar {
+        position: absolute;
+        bottom: 83px;
+        left: 50px;
+        display: none;
+        right: 50px;
+        width: initial;
+
+        @media (max-width: 1023px) {
+            display: block;
+        }
+
+        @media (max-width: 767px) {
+            right: 0;
+            bottom: 44px;
+            left: 20px;
+        }
+    }
+
+    .slider_controls {
+        left: 50%;
+        transform: translateX(-48%);
+
+        @media (max-width: 1023px) {
+            bottom: 47px;
+            left: 50px;
+            transform: none;
+        }
+        @media (max-width: 767px) {
+            bottom: 15px;
+            left: 20px;
+        }
+    }
+
+    .preloader {
+        @media (max-width: 1023px) {
+            display: none;
+        }
+    }
+}
+
+.banner__slider {
+    height: 100%; 
+}
+
+.banner__content {
+    position: relative;
+    height: 100%;
+}
+
+.banner__title {
+    max-width: 647px;
+    margin-bottom: 42px;
+    font-size: 64px;
+    line-height: 83px;
+    color: #FFFFFF;
+
+    @media (max-width: 767px), (max-height: 767px) {
+        margin-bottom: 25px;
+        font-size: 32px;
+        line-height: 42px;
+    }
+
+    &::after {
+        content: '.';
+        color: $color3;
+    }
+}
+
+.banner__description {
+    max-width: 647px;
+    margin-bottom: 46px;
+    font-size: 22px;
+    line-height: 150%;
+    color: #fff;
+
+    @media (max-width: 767px), (max-height: 767px) {
+        margin-bottom: 38px;
+        font-size: 18px;
+    }
+}
+
+.banner__control {
+    position: absolute;
+    top: 50%;
+    right: 173px;
+    width: 86px;
+    height: 86px;
+    transform: translateY(-50%);
+    background: url(../img/design/play.svg) center no-repeat;
+
+    &.pause {
+        background: url(../img/design/pause.svg) center no-repeat;
+    }
+
+    @media (max-width: 1023px) {
+        display: none;
+    }
+}
+
+.video_progress {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    bottom: 0;
+    width: 100%;
+    max-width: 1160px;
+    margin: 0 auto;
+    height: 2px;
+    background: rgba($color: #B3B1C2, $alpha: 0.4);
+
+    .bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 2px;
+        background: $color3;
+    }
+}
+
+.player_overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    
+    img {
+        position: relative;
+        z-index: 1;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
+
+    .banner__image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.banner__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

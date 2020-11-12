@@ -1,0 +1,29 @@
+.team {
+    margin-bottom: 122px;
+    
+    @media (max-width: 767px) {
+        margin-bottom: 60px;
+    }
+    
+    .section__block {
+        margin-bottom: 50px;
+    }
+}
+
+.team__slider {
+
+    .swiper-slide {
+        height: auto !important;
+
+        @media (max-width: 1023px) {
+            width: 312px;
+
+            &:last-child {
+                display: none;
+            }
+        }
+        @media (max-width: 767px) {
+            width: 260px;
+        }
+    }
+}
