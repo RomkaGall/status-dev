@@ -21,38 +21,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const coordinates = [
         {
             "lat": 59.832050,
-            "lng" : 30.325623
+            "lng" : 30.325623,
+            "picker": "img/design/map_picker.svg"
         },
         {
             "lat": 59.798348, 
-            "lng" : 30.274001
+            "lng" : 30.274001,
+            "picker": "img/design/map_picker1.svg"
         },
         {
             "lat": 59.762123, 
-            "lng" : 30.356293
+            "lng" : 30.356293,
+            "picker": "img/design/map_picker2.svg"
         },
         {
             "lat": 59.782123, 
-            "lng" : 30.346293
+            "lng" : 30.346293,
+            "picker": "img/design/map_picker.svg"
         }
     ]
-    // Loop through the results array and place a marker for each
-    // set of coordinates.  
-    // const mapCoordinates = function (results) {
-    //   for (let i = 0; i < results.length; i++) {
-    //     const coordsLat = results[i].lat;
-    //     const coordsLng = results[i].lng;
-    //     const latLng = new google.maps.LatLng(coordsLat, coordsLng);
-    //     new google.maps.Marker({
-    //       position: latLng,
-    //       icon: "../img/design/map_picker.svg",
-    //       map: map,
-    //     });
-    //   }
-    // };
-    
-    
-    // mapCoordinates(coordinates)
 
       // add custom bullets
       const createBullets = () => {
@@ -130,11 +117,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 swiper.$el.find('.swiper-pagination-bullet').eq(swiper.realIndex).addClass('swiper-pagination-bullet-active')
                 $('.banner__slider .swiper-pagination-bullet').eq(swiper.realIndex).siblings().removeClass('swiper-pagination-bullet-active')
 
-                const id = swiper.$el.find('.swiper-slide').eq(swiper.activeIndex - 1).find('.youtube_player').attr('id')
-                swiper.$el.find('.banner__control').removeClass('pause')
+                const prevSlide = swiper.$el.find('.swiper-slide').eq(swiper.activeIndex - 1);
+                const nextSlide = swiper.$el.find('.swiper-slide').eq(swiper.activeIndex + 1);
 
-                if ( id !== undefined) {
-                    jQuery(`#${id}`).YTPPause()
+                if ( prevSlide.find('.video_container').length ) {
+                    prevSlide.find('.banner__control').removeClass('pause')
+                    prevSlide.find('.video_container')[0].pause()
                 }
             }
         }
@@ -154,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
             init: function(){
                 curMarker = new google.maps.Marker({
                     position: new google.maps.LatLng(coordinates[0].lat, coordinates[0].lng),
-                    icon: "../img/design/map_picker.svg",
+                    icon: coordinates[0].picker,
                     map: map,
                 });
 
@@ -171,14 +159,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
                 const latLng = new google.maps.LatLng(coordinates[swiper2.realIndex + 1].lat, coordinates[swiper2.realIndex + 1].lng);
+
                 curMarker = new google.maps.Marker({
                     position: new google.maps.LatLng(coordinates[0].lat, coordinates[0].lng),
-                    icon: "../img/design/map_picker.svg",
+                    icon: coordinates[0].picker,
                     map: map,
                 });
                 curMarker = new google.maps.Marker({
                     position: latLng,
-                    icon: "../img/design/map_picker.svg",
+                    icon: coordinates[swiper2.realIndex + 1].picker,
                     map: map,
                 });
             }
@@ -301,20 +290,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     var swiper6 = new Swiper('.progress__slider', {
-        pagination: {
-          el: '.swiper-pagination6',
-          type: 'progressbar'
-        },
+        // pagination: {
+        //   el: '.swiper-pagination6',
+        //   type: 'progressbar'
+        // },
         autoplay: {
             delay: 3000,
         },
         navigation: {
-            nextEl: '.progress__slider .swiper-button-next'
+            prevEl: '.progress .swiper-button-prev',
+            nextEl: '.progress .swiper-button-next'
         },
         on : {
             slideChange: function(i) {
-                swiper6.$el.find('.swiper-pagination-bullet').eq(swiper6.realIndex).addClass('swiper-pagination-bullet-active')
-                $('.progress__slider .swiper-pagination-bullet').eq(swiper6.realIndex).siblings().removeClass('swiper-pagination-bullet-active')
+                // swiper6.$el.find('.swiper-pagination-bullet').eq(swiper6.realIndex).addClass('swiper-pagination-bullet-active')
+                // $('.progress .swiper-pagination-bullet').eq(swiper6.realIndex).siblings().removeClass('swiper-pagination-bullet-active')
+                $('.progress .section__block_item').eq(swiper6.realIndex).slideDown('fast')
+                $('.progress .section__block_item').eq(swiper6.realIndex).siblings().not('.slider_controls').slideUp('fast')
+
+
             }
         }
     });
@@ -361,10 +355,6 @@ document.addEventListener('DOMContentLoaded', () => {
           }
     });
 
-    // $(document).on('click', '.gallery__slider ' function () {
-
-    // })
-
     
     // sliders end
 
@@ -379,6 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
     $(document).on('click', '.apartments__show_plan', function () {
         $(".popup--plan").addClass("show");        
         $('.popup--plan .popup__image').attr('src', `img/content/${plan}`)
+        $('.popup--plan .popup__download').attr('href', `img/content/${plan}`)
     })
 
     $(document).on("click", ".close", function () {
@@ -417,5 +408,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     $('.contacts__form').on('submit', function () {
         $('.popup--success').addClass('show')
+    })
+
+    // change video on desktop/mobile
+    $('.video_container').each(function () {
+        
+        const video = $(this);
+
+        const WindowWidth = $(window).width();
+
+        if (WindowWidth < 768) {
+            //It is a small screen
+            if($(this).data('mobile')) {
+                video.append(`<source src='${$(this).data('mobile')}' type='video/mp4' >`);
+            } else {
+                video.append(`<source src='${$(this).data('desktop')}' type='video/mp4' >`);
+            }
+            
+        } else {
+            //It is a big screen or desktop
+
+            if($(this).data('desktop')) {
+                video.append(`<source src='${$(this).data('desktop')}' type='video/mp4' >`);
+            } else {
+                video.append(`<source src='${$(this).data('mobile')}' type='video/mp4' >`);
+            }
+        }
     })
 }); 

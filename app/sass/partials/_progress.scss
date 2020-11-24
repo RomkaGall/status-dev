@@ -6,52 +6,105 @@
     }
     
     .section__block {
-        padding: 0 60px;
 
         @media (max-width: 1023px) {
             padding: 0;
         }
     }
+
+     .slider_controls {
+        top: 31px;
+        bottom: initial;
+        left: 270px;
+        width: auto;
+        transform: none;
+
+        @media (max-width: 767px) {
+           top: 20px;
+           left: initial;
+           right: 20px;
+        }
+
+        button {
+            margin: 0 6px;
+        }
+    }
+
+    .section__block_container {
+
+        @media (max-width: 1023px) {
+            width: calc(100% + 60px);
+            margin-left: -30px;
+        }
+    
+        @media (max-width: 767px) {
+            width: calc(100% + 40px);
+            margin-left: -20px;
+        }
+    }
 }
 
 .progress__slider {
-    margin-bottom: 25px;
 
     @media (max-width: 1023px) {
-        height: 428px;
         width: calc(100% + 60px);
         margin-left: -30px;
     }
 
     @media (max-width: 767px) {
-        height: 100vw;
         width: calc(100% + 40px);
         margin-left: -20px;
     }
 
-    .slider_controls {
-        @media (max-width: 1023px) and (min-width: 768px) {
-            left: 30px;
+    .swiper-slide {
+        display: flex;
+        justify-content: space-between;
+
+        @media (max-width: 1023px) {
+            flex-direction: column;
         }
     }
 
-    .swiper-pagination-progressbar.progress_bar {
-        @media (max-width: 1023px) and (min-width: 768px) {
-            left: 30px;
-        }
-    }
+    .main_image {
+        width: 63.39%;
 
-    .slider__container {
-        @media (max-width: 1023px) and (min-width: 768px) {
-            left: 30px;
+        @media (max-width: 1023px) {
+            width: 100%;
+            margin-bottom: 10px;
         }
-    }
 
-    .slider__container {
-        bottom: 80px;
-        
         @media (max-width: 767px) {
-           bottom: 60px;
+            margin-bottom: 5px;
+        }
+    }
+
+    .secondary__images {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 35.71%;
+
+        @media (max-width: 1023px) {
+            width: 100%;
+            flex-direction: row;
+        }
+    }
+
+    .secondary__image {
+        width: 100%;
+        height: calc(50% - 5px);
+
+        @media (max-width: 1023px) {
+            width: calc(50% - 5px);
+            height: auto;
+        }
+
+        @media (max-width: 767px) {
+            width: calc(50% - 2.5px);
+        }
+
+        &:last-child {
+            margin-bottom: 0;
         }
     }
 }

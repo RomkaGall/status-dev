@@ -4,7 +4,7 @@
             <div class="swiper-wrapper">
                 <!-- Slides -->
 
-                <div class="swiper-slide swiper-slide1">
+                <div class="swiper-slide">
                     <div class="container">
                         <div class="banner__content">
                             <h2 class="banner__title">Апартаменты с гарантированной доходностью</h2>
@@ -13,20 +13,19 @@
                                 в Московском районе Петербурга.</p>
                             <a href="#format" class="btn btn_1"><span class="inner_text">Подробнее</span></a>  
 
-                            <button class="banner__control pause" onclick="if($(this).hasClass('pause')){jQuery('#player1').YTPPause()}else{jQuery('#player1').YTPPlay()} "></button>
-                            
-                            <div id="player1" class="youtube_player" data-property="{videoURL:'http://youtu.be/1La4QzGeaaQ',containment:'.swiper-slide1',autoPlay:true, mute:true, startAt:0, opacity:1}"></div>
-
+                            <button class="banner__control "></button>
+                                
                            
                         </div>
                     </div>  
-                    <div class="player_overlay">
-                        <img src="img/content/video_1.jpg" alt="" class="banner__image">
-                        <img src="img/design/preloader.gif" alt="" class="preloader">
-                    </div>
+                    
+                    <video class="video_container" playsinline loop  autoplay muted="muted" data-desktop='img/1.mp4' data-mobile='img/1_mob.mp4'>
+                    </video>
+                    <progress class="video_progress" max="100" value="0"></progress>
                     <div class="text_overlay"></div>
                 </div>
-                <div class="swiper-slide swiper-slide2">
+
+                <div class="swiper-slide ">
                     <div class="container">
                         <div class="banner__content">
                             <h2 class="banner__title">Апартаменты с гарантированной доходностью</h2>
@@ -42,7 +41,7 @@
                     <div class="text_overlay"></div>
                 </div>
 
-                <div class="swiper-slide swiper-slide3">
+                <div class="swiper-slide ">
                     <div class="container">
                         <div class="banner__content">
                             <h2 class="banner__title">Апартаменты с гарантированной доходностью</h2>
@@ -51,18 +50,18 @@
                                 в Московском районе Петербурга.</p>
                             <a href="#format" class="btn btn_1"><span class="inner_text">Подробнее</span></a>  
 
-                            <button class="banner__control" onclick="if($(this).hasClass('pause')){jQuery('#player3').YTPPause()}else{jQuery('#player3').YTPPlay()} "></button>
-                            
-                            <div id="player3" class="youtube_player" data-property="{videoURL:'http://youtu.be/1La4QzGeaaQ',containment:'.swiper-slide3',autoPlay: false, mute:true, startAt:0, opacity:1}">My video</div>
+                            <button class="banner__control "></button>
                         </div>
                     </div>  
-                    <div class="player_overlay">
-                        <img src="img/content/video_1.jpg" alt="" class="banner__image">
-                        <img src="img/design/preloader.gif" alt="" class="preloader">
-                    </div>
+                    
+                    <video class="video_container" playsinline loop   muted="muted" data-desktop='img/1.mp4' data-mobile='img/1_mob.mp4'>
+                    </video>
+                                
+                    <progress class="video_progress" max="100" value="0"></progress>
                     <div class="text_overlay"></div>
                 </div>
-                <div class="swiper-slide swiper-slide4">
+
+                <div class="swiper-slide ">
                     <div class="container">
                         <div class="banner__content">
                             <h2 class="banner__title">Апартаменты с гарантированной доходностью</h2>
@@ -71,21 +70,19 @@
                                 в Московском районе Петербурга.</p>
                             <a href="#format" class="btn btn_1"><span class="inner_text">Подробнее</span></a>  
 
-                            <button class="banner__control" onclick="if($(this).hasClass('pause')){jQuery('#player4').YTPPause()}else{jQuery('#player4').YTPPlay()} "></button>
-                            
-                            <div id="player4" class="youtube_player" data-property="{videoURL:'http://youtu.be/1La4QzGeaaQ',containment:'.swiper-slide4', autoPlay: false,mute:true, startAt:0, opacity:1}">My video</div>
+                            <button class="banner__control "></button>
                         </div>
-                    </div>  
-                    <div class="player_overlay">
-                        <img src="img/content/video_1.jpg" alt="" class="banner__image">
-                        <img src="img/design/preloader.gif" alt="" class="preloader">
-                    </div>
+                    </div> 
+                    
+                    <video class="video_container" playsinline loop   muted="muted" data-desktop='img/1.mp4' data-mobile='img/1_mob.mp4'>
+                    </video>
+                                
+                    <progress class="video_progress" max="100" value="0"></progress>
                     <div class="text_overlay"></div>
                 </div>
-                
                
             </div>
-            <div class="swiper-pagination progress_bar"></div>   
+            <!-- <div class="swiper-pagination progress_bar"></div>    -->
            
             <div class="slider_controls">        
                 <div class="swiper_bullets swiper-pagination-clickable"></div>   

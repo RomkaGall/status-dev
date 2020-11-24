@@ -25,6 +25,13 @@
             margin-bottom: 30px;
         }
     }
+
+    .slider_pattern .slider__title {
+
+        @media (max-width: 767px) {
+            margin-left: 33px;
+        }
+    }
 }
 
 .infrastructure__content {

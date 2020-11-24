@@ -54,37 +54,32 @@
         }
     }
 
-    .mb_YTPBar {
-        background: none;
-        opacity: 1;
 
-        .mb_YTPProgress {
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: 56px;
-            max-width: 1160px;
-            height: 2px;
-            margin: 0 auto;
-            background: rgba($color: #B3B1C2, $alpha: 0.4);
+    .video_progress {
+        left: calc(50% + 20px);
+        transform: translateX(-50%);
+        bottom: 56px;
+        max-width: 1160px;
+        height: 2px;
+        margin: 0 auto;
+        background: rgba($color: #B3B1C2, $alpha: 0.4);
+
+        @media (max-width: 1280px) {
+            width: initial;
+            left: 20px;
+            right: 20px;
+            transform: none;
         }
 
-        .mb_YTPseekbar {
-            height: 2px;
-            background: $color3;
+        @media (max-width: 1023px) {
+            right: 50px;
+            left: 50px;
         }
-
-        .mb_YTPLoaded {
-            height: 2px;
+        @media (max-width: 767px) {
+            left: 20px;
+            right: 20px;
         }
-
-        .mb_YTPPlayPause {
-
-        }
-
-        .buttonBar {
-            display: none;
-        }
-    } 
+    }
 
     .slider_pattern .swiper-pagination-progressbar.progress_bar {
         position: absolute;
@@ -110,12 +105,11 @@
         transform: translateX(-48%);
 
         @media (max-width: 1023px) {
-            bottom: 47px;
+            bottom: 15px;
             left: 50px;
             transform: none;
         }
         @media (max-width: 767px) {
-            bottom: 15px;
             left: 20px;
         }
     }
@@ -124,6 +118,16 @@
         @media (max-width: 1023px) {
             display: none;
         }
+    }
+
+    video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 }
 
@@ -176,21 +180,49 @@
     height: 86px;
     transform: translateY(-50%);
     background: url(../img/design/play.svg) center no-repeat;
+    background-size: cover;
 
     &.pause {
         background: url(../img/design/pause.svg) center no-repeat;
+        background-size: cover;
     }
 
     @media (max-width: 1023px) {
-        display: none;
+        top: initial;
+        transform: none;
+        bottom: 0;
+        right: 50px;
     }
+
+    @media (max-width: 767px) {
+        right: 20px;
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* Fallback stuff */
+progress[value] {
+    appearance: none; /* Needed for Safari */
+    border: none; /* Needed for Firefox */
+}
+  
+  /* WebKit styles */
+progress[value]::-webkit-progress-value {
+    background: $color3;
+    transition: width 1s linear;
+}
+  
+  /* Firefox styles */
+progress[value]::-moz-progress-bar {
+    background: $color3;
 }
 
 .video_progress {
     position: absolute;
     left: 0;
     right: 0;
-    z-index: 1;
+    z-index: 3 ;
     bottom: 0;
     width: 100%;
     max-width: 1160px;

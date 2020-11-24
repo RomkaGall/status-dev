@@ -15,6 +15,25 @@ jQuery(function(){
     
   });
 
-  $(document).on('click', '.banner__control', function () {
+  
+function progressLoop(video, progress) {
+    setInterval(function () {
+        if(video.currentTime > 0) {
+            progress.value = Math.round((video.currentTime / video.duration) * 100);
+        }
+    });
+}
+
+$(document).on('click', '.banner__control', function () {
+    const video = $(this).parents('.swiper-slide').find('.video_container').get(0)
+    const progress = $(this).parents('.swiper-slide').find('.video_progress').get(0)
     $(this).toggleClass('pause')
-  })
+
+    if($(this).hasClass("pause")) {
+        video.play()
+        progressLoop(video, progress)
+    } else {
+        video.pause()
+    }
+})
+$('.banner .swiper-slide').eq(0).find('.banner__control').click()
