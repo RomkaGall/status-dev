@@ -89,7 +89,14 @@
                     left: 20px;
                 }
             }    
-        }        
+        }    
+        
+        .slider__title {
+
+            @media (max-width: 767px) {
+                margin-left: 33px;
+            }
+        }
     } 
 
     .slider_controls {
@@ -108,7 +115,7 @@
     }
 }
 
-.map__container {
+.map__container_wr {
     position: relative;
     width: 50%;
     height: 100%;
@@ -118,48 +125,16 @@
         height:100vw;
         width: 100%;
     }
+}
+
+.map__container {
+    width: 100%;
+    height: 100%;
+    
 
     .map__image {
         height: 100%;
         object-fit: cover;
-    }
-
-    .map__picker {
-        position: absolute;
-        z-index: 1;
-        width: 50px;
-        height: 50px;
-        display: none;
-        background: url(../img/design/map_picker.svg) center no-repeat;
-        
-        &.map__picker_main {
-            display: block;
-        }
-
-        &.map__picker1 {
-            top: 102px;
-            left: 308px;
-        }
-        
-        &.map__picker2 {
-            top: 210px;
-            left: 279px;
-        }
-        
-        &.map__picker3 {
-            top: 144px;
-            left: 421px;
-        }
-        
-        &.map__picker4 {
-            top: 152px;
-            left: 458px;
-        }
-        
-        &.map__picker5 {
-            top: 283px;
-            left: 433px;
-        }
     }
 }
 
@@ -174,5 +149,33 @@
         @media (max-width: 767px) {
             left: 0;
         }
+    }
+}
+
+#marker-tooltip {
+    display: none;
+    align-items: center;
+    position:absolute;
+    z-index: 10;
+    width: 180px;
+    height: 66px;
+    padding: 0 15px;
+    background-color: #fff;
+    box-shadow: 0px 13px 25px rgba(0, 0, 0, 0.18);
+    font-size: 14px;
+    line-height: 18px;
+    transform: translate(37px, -58px);
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: -5px;
+        transform: translateY(-50%);
+        width: 0; 
+        height: 0; 
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;         
+        border-right:10px solid #fff; 
     }
 }

@@ -22,24 +22,36 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             "lat": 59.832050,
             "lng" : 30.325623,
-            "picker": "img/design/map_picker.svg"
+            "picker": "img/design/map_picker.svg",
+            "tooltip": 'Пулковское шоссе, дом 14  лит. Г'
         },
         {
             "lat": 59.798348, 
             "lng" : 30.274001,
-            "picker": "img/design/map_picker1.svg"
+            "picker": "img/design/map_picker1.svg",
+            "tooltip": 'Пулковское шоссе, дом 22  лит. Г'
         },
         {
             "lat": 59.762123, 
             "lng" : 30.356293,
-            "picker": "img/design/map_picker2.svg"
+            "picker": "img/design/map_picker2.svg",
+            "tooltip": 'Пулковское шоссе, дом 33  лит. Г'
         },
         {
             "lat": 59.782123, 
             "lng" : 30.346293,
-            "picker": "img/design/map_picker.svg"
+            "picker": "img/design/map_picker.svg",
+            "tooltip": 'Пулковское шоссе, дом 444  лит. Г'
         }
     ]
+
+    function fromLatLngToPoint(latLng, map) {
+        var topRight = map.getProjection().fromLatLngToPoint(map.getBounds().getNorthEast());
+        var bottomLeft = map.getProjection().fromLatLngToPoint(map.getBounds().getSouthWest());
+        var scale = Math.pow(2, map.getZoom());
+        var worldPoint = map.getProjection().fromLatLngToPoint(latLng);
+        return new google.maps.Point((worldPoint.x - bottomLeft.x) * scale, (worldPoint.y - topRight.y) * scale);
+    }
 
       // add custom bullets
       const createBullets = () => {
@@ -140,10 +152,43 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         on : {
             init: function(){
-                curMarker = new google.maps.Marker({
+                mainMarker = new google.maps.Marker({
                     position: new google.maps.LatLng(coordinates[0].lat, coordinates[0].lng),
                     icon: coordinates[0].picker,
                     map: map,
+                });
+                const latLng = new google.maps.LatLng(coordinates[1].lat, coordinates[1].lng);
+
+                curMarker = new google.maps.Marker({
+                    position: latLng,
+                    icon: coordinates[1].picker,
+                    map: map,
+                });
+
+                google.maps.event.addListener(curMarker, 'mouseover', function () {
+                    var point = fromLatLngToPoint(curMarker.getPosition(), map);
+                    $('#marker-tooltip').html(coordinates[swiper2.realIndex + 1].tooltip).css({
+                        'left': point.x,
+                        'top': point.y,
+                        'display': 'flex'
+                    })
+                });
+                
+                google.maps.event.addListener(mainMarker, 'mouseout', function () {
+                    $('#marker-tooltip').hide();
+                });
+
+                google.maps.event.addListener(mainMarker, 'mouseover', function () {
+                    var point = fromLatLngToPoint(mainMarker.getPosition(), map);
+                    $('#marker-tooltip').html(coordinates[0].tooltip).css({
+                        'left': point.x,
+                        'top': point.y,
+                        'display': 'flex'
+                    })
+                });
+                
+                google.maps.event.addListener(mainMarker, 'mouseout', function () {
+                    $('#marker-tooltip').hide();
                 });
 
                 if($(window).width() < 768) {
@@ -160,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const latLng = new google.maps.LatLng(coordinates[swiper2.realIndex + 1].lat, coordinates[swiper2.realIndex + 1].lng);
 
-                curMarker = new google.maps.Marker({
+                mainMarker = new google.maps.Marker({
                     position: new google.maps.LatLng(coordinates[0].lat, coordinates[0].lng),
                     icon: coordinates[0].picker,
                     map: map,
@@ -169,6 +214,32 @@ document.addEventListener('DOMContentLoaded', () => {
                     position: latLng,
                     icon: coordinates[swiper2.realIndex + 1].picker,
                     map: map,
+                });
+
+                google.maps.event.addListener(curMarker, 'mouseover', function () {
+                    var point = fromLatLngToPoint(curMarker.getPosition(), map);
+                    $('#marker-tooltip').html(coordinates[swiper2.realIndex + 1].tooltip).css({
+                        'left': point.x,
+                        'top': point.y,
+                        'display': 'flex'
+                    })
+                });
+                
+                google.maps.event.addListener(curMarker, 'mouseout', function () {
+                    $('#marker-tooltip').hide();
+                });
+
+                google.maps.event.addListener(mainMarker, 'mouseover', function () {
+                    var point = fromLatLngToPoint(mainMarker.getPosition(), map);
+                    $('#marker-tooltip').html(coordinates[0].tooltip).css({
+                        'left': point.x,
+                        'top': point.y,
+                        'display': 'flex'
+                    })
+                });
+                
+                google.maps.event.addListener(mainMarker, 'mouseout', function () {
+                    $('#marker-tooltip').hide();
                 });
             }
         }
@@ -294,9 +365,9 @@ document.addEventListener('DOMContentLoaded', () => {
         //   el: '.swiper-pagination6',
         //   type: 'progressbar'
         // },
-        autoplay: {
-            delay: 3000,
-        },
+        // autoplay: {
+        //     delay: 3000,
+        // },
         navigation: {
             prevEl: '.progress .swiper-button-prev',
             nextEl: '.progress .swiper-button-next'
@@ -370,10 +441,14 @@ document.addEventListener('DOMContentLoaded', () => {
         $(".popup--plan").addClass("show");        
         $('.popup--plan .popup__image').attr('src', `img/content/${plan}`)
         $('.popup--plan .popup__download').attr('href', `img/content/${plan}`)
+
+        console.log(swiper3)
+        swiper3.autoplay.stop();
     })
 
     $(document).on("click", ".close", function () {
         $(".popup").removeClass("show");
+        swiper3.autoplay.start();
     });
 
     $(document).on("click touchstart", function (e) {
@@ -382,6 +457,7 @@ document.addEventListener('DOMContentLoaded', () => {
             !$(e.target).closest(".popup__content").length 
         ) {
             $(e.target).removeClass("show");
+            swiper3.autoplay.start();    
         }
 
         e.stopPropagation();
